@@ -51,4 +51,10 @@ L(tm2) = { w#w | w = {0, 1}* }
 
 L(tm3) = { (a**i)(b**j)(c**k) | i * j = k and i, j, k >= 1 }
 # computes arithmetic  a * b = c
+
+L(tm4) = { w | w contains an equal number of 0s and 1s }
+
+L(tm5) = { w | w contains twice as many 0s as 1s }
+
+L(tm6) = { w | w does not contain twice as many 0s as 1s }
 ```

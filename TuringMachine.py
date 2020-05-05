@@ -38,7 +38,6 @@ class TuringMachine:
             halt = self.compute_one_step()
             if verbose:
                 self.print_configuration()
-        
         if verbose:
             print('-------------------------------------------')
             print('Machine halted in the {0} configuration.'.format(self.halt_state))
