@@ -38,7 +38,6 @@ transition_dict = {
 }
 
 nfa = NFA(get_states(8), BINARY_ALPHABET, transition_dict, 'q1', ['q4', 'q8'])
-print("nfa accepts strings that either: begins with 0 and ends with 1, or has at least 3 1's")
 
 for _ in range(TEST_ITERATION):
     TEST_STRINGS.append(generate_random_string(BINARY_ALPHABET))

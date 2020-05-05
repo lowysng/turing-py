@@ -6,7 +6,7 @@ RIGHT = 'right'
 
 from TuringMachine import TuringMachine
 
-# This Turing Machine decides the language A = {w | w = 0 ** 2 ** n where n >= 0}
+# This Turing Machine decides the language A = { w | w = 0 ** 2 ** n where n >= 0 }
 
 states = ['q1', 'q2', 'q3', 'q4', 'q5', Q_ACCEPT, Q_REJECT]
 input_alphabet = ['0']
@@ -32,6 +32,4 @@ transition_function = {
     ('q5', BLANK_SYMBOL): ('q2', BLANK_SYMBOL, RIGHT)
 }
 
-tm = TuringMachine(states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state)
-tm.load_input('0000')
-tm.start_machine()
+tm1 = TuringMachine(states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state)

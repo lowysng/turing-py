@@ -24,37 +24,26 @@ class TuringMachine:
         self.head = 0
 
     def compute_one_step(self):
-        self.current_state, tape_symbol, LEFT_OR_RIGHT = self.delta.get((self.current_state, self.read_tape()))
-        self.write_tape(tape_symbol)
-        if LEFT_OR_RIGHT == LEFT:
-            if self.head != 0:
-                self.head = self.head - 1
-        else:
-            if self.head == len(self.tape) - 1:
-                self.tape.append(BLANK_SYMBOL)
-            self.head = self.head + 1
-    
-        if self.current_state == Q_ACCEPT:
-            self.halt_state = 'ACCEPT'
-            return True
-        elif self.current_state == Q_REJECT:
-            self.halt_state = 'REJECT'
-            return True
-
-        return False
+        self.current_state, write_symbol, move_head_direction = self.delta.get((self.current_state, self.read_tape()))
+        self.write_tape(write_symbol)
+        self.move_head(move_head_direction)
+        return self.is_halt()
 
     def start_machine(self, verbose=True):
-        print('Starting Turing Machine...')
         if verbose:
+            print('Starting Turing Machine...')
             self.print_configuration()
         halt = False
         while not halt:
             halt = self.compute_one_step()
             if verbose:
                 self.print_configuration()
-        print('-------------------------------------------')
-        print('Machine halted in the {0} configuration.'.format(self.halt_state))
-        print('-------------------------------------------')
+        
+        if verbose:
+            print('-------------------------------------------')
+            print('Machine halted in the {0} configuration.'.format(self.halt_state))
+            print('-------------------------------------------')
+        return self.halt_state
     
     def read_tape(self):
         return self.tape[self.head]
@@ -63,9 +52,29 @@ class TuringMachine:
         self.tape[self.head] = tape_symbol
         return self.tape[self.head]
 
+    def move_head(self, direction):
+        if direction == LEFT:
+            if self.head != 0:
+                self.head = self.head - 1
+        elif direction == RIGHT:
+            if self.head == len(self.tape) - 1:
+                self.tape.append(BLANK_SYMBOL)
+            self.head = self.head + 1
+        return self.tape[self.head]
+
+    def is_halt(self):
+        if self.current_state == Q_ACCEPT:
+            self.halt_state = 'ACCEPT'
+            return True
+        elif self.current_state == Q_REJECT:
+            self.halt_state = 'REJECT'
+            return True
+        else:
+            return False
+        
     def print_configuration(self):
         temp = self.tape[:]
-        temp.insert(self.head, '_{0}_'.format(str(self.current_state)))
+        temp.insert(self.head, '[{0}]=>'.format(str(self.current_state)))
         temp = ''.join(temp)
         print('C: {0}'.format(temp))
         return temp
