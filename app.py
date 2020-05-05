@@ -12,7 +12,7 @@ machines = {
     'tm3': tm3,
     'tm4': tm4,
     'tm5': tm5,
-    'tm6', tm6
+    'tm6': tm6
 }
 
 if (len(sys.argv) != 3):
@@ -21,5 +21,10 @@ if (len(sys.argv) != 3):
 
 else:
     machine = machines.get(sys.argv[1])
+    machine.print_desc()
     machine.load_input(sys.argv[2])
-    machine.start_machine()
+    user = input('Ready to execute, press ENTER to start machine...')
+    if user == '':
+        machine.start_machine()
+    else:
+        print('Aborting.')

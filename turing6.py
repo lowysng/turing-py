@@ -7,8 +7,7 @@ RIGHT = 'right'
 from TuringMachine import TuringMachine
 from util import get_states
 
-# This Turing Machine decides the language { w | w does not contain twice as many 0s as 1s }
-
+description = 'This Turing Machine decides the language { w | w does not contain twice as many 0s as 1s }'
 states = get_states(8) + [Q_ACCEPT, Q_REJECT]
 input_alphabet = ['0', '1']
 tape_alphabet = ['0', '1', 'x', BLANK_SYMBOL]
@@ -48,4 +47,12 @@ transition_function = {
     ('q8', BLANK_SYMBOL): (Q_REJECT, BLANK_SYMBOL, RIGHT),
 }
 
-tm6 = TuringMachine(states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state)
+tm6 = TuringMachine(
+    states, 
+    input_alphabet, 
+    tape_alphabet, 
+    transition_function,
+    start_state, 
+    accept_state, 
+    reject_state,
+    description)

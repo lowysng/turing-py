@@ -7,8 +7,7 @@ RIGHT = 'right'
 from TuringMachine import TuringMachine
 from util import get_states
 
-# This Turing Machine decides the language C = { (a**i)(b**j)(c**k) | i * j = k and i, j, k >= 1 }
-
+description = 'This Turing Machine decides the language C = { (a**i)(b**j)(c**k) | i * j = k and i, j, k >= 1 }'
 states = get_states(8) + [Q_ACCEPT, Q_REJECT]
 input_alphabet = ['a', 'b', 'c']
 tape_alphabet = ['a', 'b', 'c', 'A', 'B', 'C', BLANK_SYMBOL]
@@ -65,4 +64,12 @@ transition_function = {
     ('q13', BLANK_SYMBOL): (Q_ACCEPT, BLANK_SYMBOL, RIGHT)
 }
 
-tm3 = TuringMachine(states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state)
+tm3 = TuringMachine(
+    states, 
+    input_alphabet, 
+    tape_alphabet, 
+    transition_function,
+    start_state, 
+    accept_state, 
+    reject_state,
+    description)

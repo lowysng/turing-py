@@ -5,7 +5,7 @@ LEFT = 'left'
 RIGHT = 'right'
 
 class TuringMachine:
-    def __init__(self, states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state):
+    def __init__(self, states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state, description):
         self.states = states
         self.sigma = input_alphabet
         self.gamma = tape_alphabet
@@ -13,6 +13,7 @@ class TuringMachine:
         self.start = start_state
         self.accept = accept_state
         self.reject = reject_state
+        self.desc = description
     
     def load_input(self, input_string, verbose=True):
         if verbose:
@@ -70,6 +71,10 @@ class TuringMachine:
             return True
         else:
             return False
+
+    def print_desc(self):
+        print(self.desc)
+        return self.desc
         
     def print_configuration(self):
         temp = self.tape[:]
