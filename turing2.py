@@ -7,8 +7,7 @@ RIGHT = 'right'
 from TuringMachine import TuringMachine
 from util import get_states
 
-# This Turing Machine decides the language B = { w#w | w = {0, 1}* }
-
+description = 'This Turing Machine decides the language B = { w#w | w = {0, 1}* }'
 states = get_states(8) + [Q_ACCEPT, Q_REJECT]
 input_alphabet = ['0', '1', '#']
 tape_alphabet = ['0', '1', '#', 'x', BLANK_SYMBOL]
@@ -58,4 +57,12 @@ transition_function = {
     ('q8', BLANK_SYMBOL): (Q_ACCEPT, BLANK_SYMBOL, RIGHT),
 }
 
-tm2 = TuringMachine(states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state)
+tm2 = TuringMachine(
+    states, 
+    input_alphabet, 
+    tape_alphabet, 
+    transition_function, 
+    start_state, 
+    accept_state, 
+    reject_state, 
+    description)

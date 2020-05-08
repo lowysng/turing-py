@@ -5,7 +5,7 @@ LEFT = 'left'
 RIGHT = 'right'
 
 class TuringMachine:
-    def __init__(self, states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state):
+    def __init__(self, states, input_alphabet, tape_alphabet, transition_function, start_state, accept_state, reject_state, description):
         self.states = states
         self.sigma = input_alphabet
         self.gamma = tape_alphabet
@@ -13,14 +13,18 @@ class TuringMachine:
         self.start = start_state
         self.accept = accept_state
         self.reject = reject_state
+        self.desc = description
     
-    def load_input(self, input_string, verbose=True):
+    def load_input(self, tm_input, verbose=True):
         if verbose:
-            print('Loading input {0} ...'.format(input_string))
-        for input_symbol in input_string:
+            print('Loading input {0} ...'.format(tm_input))
+        for input_symbol in tm_input:
             assert input_symbol in self.sigma, 'Input symbol {0} not found in input alphabet'.format(input_symbol)
+        if isinstance(tm_input, str):
+            self.tape = list(tm_input)
+        else:
+            self.tape = tm_input
         self.current_state = self.start
-        self.tape = list(input_string)
         self.head = 0
 
     def compute_one_step(self):
@@ -38,7 +42,6 @@ class TuringMachine:
             halt = self.compute_one_step()
             if verbose:
                 self.print_configuration()
-        
         if verbose:
             print('-------------------------------------------')
             print('Machine halted in the {0} configuration.'.format(self.halt_state))
@@ -71,6 +74,10 @@ class TuringMachine:
             return True
         else:
             return False
+
+    def print_desc(self):
+        print(self.desc)
+        return self.desc
         
     def print_configuration(self):
         temp = self.tape[:]
