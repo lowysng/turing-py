@@ -4,6 +4,7 @@ from turing3 import tm3 # tm3 decides the langauge { (a**i)(b**j)(c**k) | i * j 
 from turing4 import tm4 # tm4 decides the language { w | w contains an equal number of 0s and 1s }
 from turing5 import tm5 # tm5 decides the language { w | w contains twice as many 0s as 1s }
 from turing6 import tm6 # tm6 decides the language { w | w does not contain twice as many 0s as 1s }
+from turing7 import tm7 # tm7 decides the language { w | w is a string accepted by dfa1 }
 import sys
 
 machines = {
@@ -12,7 +13,8 @@ machines = {
     'tm3': tm3,
     'tm4': tm4,
     'tm5': tm5,
-    'tm6': tm6
+    'tm6': tm6,
+    'tm7': tm7
 }
 
 if (len(sys.argv) != 3):

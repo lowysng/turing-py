@@ -15,13 +15,16 @@ class TuringMachine:
         self.reject = reject_state
         self.desc = description
     
-    def load_input(self, input_string, verbose=True):
+    def load_input(self, tm_input, verbose=True):
         if verbose:
-            print('Loading input {0} ...'.format(input_string))
-        for input_symbol in input_string:
+            print('Loading input {0} ...'.format(tm_input))
+        for input_symbol in tm_input:
             assert input_symbol in self.sigma, 'Input symbol {0} not found in input alphabet'.format(input_symbol)
+        if isinstance(tm_input, str):
+            self.tape = list(tm_input)
+        else:
+            self.tape = tm_input
         self.current_state = self.start
-        self.tape = list(input_string)
         self.head = 0
 
     def compute_one_step(self):
