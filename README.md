@@ -59,5 +59,5 @@ L(tm5) = { w | w contains twice as many 0s as 1s }
 L(tm6) = { w | w does not contain twice as many 0s as 1s }
 
 L(tm7) = { w | w is a string accepted by dfa1 }
-# dfa1 accepts a string that starts with a 0 and ends with a 1
+# dfa1 accepts strings that start with a 0 and end with a 1
 ```
