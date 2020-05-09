@@ -1,4 +1,4 @@
-# Turing Machine
+# turing-py
 
 This repo contains code for a Turing Machine implemented in Python.
 
